@@ -1,5 +1,4 @@
-import React from "react";
-import { DUMMY_VIDEOS } from "../shared/constants/dummy";
+import { DUMMY_VIDEOS } from "../../shared/constants/dummy";
 
 function VideoCard(props) {
     const {
@@ -45,15 +44,92 @@ function VideoCard(props) {
     );
 }
 
-function VideoList() {
+function VideoListViewCard(props) {
+    const {
+        thumbnail,
+        title,
+        duration,
+        channelProfile,
+        views,
+        publishedAt,
+        channelName,
+        description,
+    } = props;
+    return (
+        <div className="w-full max-w-3xl gap-x-4 md:flex">
+            <div className="relative mb-2 w-full md:mb-0 md:w-5/12">
+                <div className="w-full pt-[56%]">
+                    <div className="absolute inset-0">
+                        <img
+                            src={thumbnail}
+                            alt={title}
+                            className="h-full w-full"
+                        />
+                    </div>
+                    <span className="absolute bottom-1 right-1 inline-block rounded bg-black px-1.5 text-sm">
+                        {duration}
+                    </span>
+                </div>
+            </div>
+            <div className="flex gap-x-2 md:w-7/12">
+                <div className="h-10 w-10 shrink-0 md:hidden">
+                    <img
+                        src={channelProfile}
+                        alt={channelName}
+                        className="h-full w-full rounded-full"
+                    />
+                </div>
+                <div className="w-full">
+                    <h6 className="mb-1 font-semibold md:max-w-[75%]">
+                        {title}
+                    </h6>
+                    <p className="flex text-sm text-gray-200 sm:mt-3">
+                        {views} · {publishedAt}
+                    </p>
+                    <div className="flex items-center gap-x-4">
+                        <div className="mt-2 hidden h-10 w-10 shrink-0 md:block">
+                            <img
+                                src={channelProfile}
+                                alt="codemaster"
+                                className="h-full w-full rounded-full"
+                            />
+                        </div>
+                        <p className="text-sm text-gray-200">{channelName}</p>
+                    </div>
+                    <p className="mt-2 hidden text-sm md:block">
+                        {description}
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function VideoCardView() {
     return (
         <div className="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-4 p-4 md:grid-cols-[repeat(2,_minmax(300px,_1fr))] lg:grid-cols-[repeat(3,_minmax(300px,_1fr))]">
             {DUMMY_VIDEOS.map((video, index) => {
-                if (index > 2) return null;
+                // if (index > 2) return null;
                 return <VideoCard {...video} />;
             })}
         </div>
     );
+}
+
+function VideoListView() {
+    return (
+        <div className="flex flex-col gap-4 p-4">
+            {DUMMY_VIDEOS.map((video, index) => {
+                // if (index > 2) return null;
+                return <VideoListViewCard {...video} />;
+            })}
+        </div>
+    );
+}
+
+function VideoList() {
+    return <VideoListView />;
+    return <VideoCardView />;
 }
 
 function HardList() {

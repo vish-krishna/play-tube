@@ -55,7 +55,8 @@ function AppSideNav() {
                         <span className="inline-block w-5 shrink-0 sm:group-hover:mr-4 lg:mr-4">
                             <img src={icon} alt="icon not found" />
                         </span>
-                        <span className="block sm:hidden sm:group-hover:inline lg:block">
+                        {/* <span className="block sm:hidden sm:group-hover:inline lg:block"> */}
+                        <span className="block sm:hidden sm:group-hover:inline">
                             {title}
                         </span>
                     </button>
